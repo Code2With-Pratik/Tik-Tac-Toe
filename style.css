@@ -13,7 +13,6 @@ body {
 .container {
   height: 70vh;
   display: flex;
-
   justify-content: center;
   align-items: center;
 }
@@ -73,4 +72,24 @@ body {
 
 .hide {
   display: none;
+}
+
+/* Styling for the Select Mode Section */
+.controls {
+  margin: 1.5rem 0;
+}
+
+.controls label {
+  font-size: 1.5rem;
+  color: #fff;
+  margin-right: 1rem;
+}
+
+#game-mode {
+  padding: 0.5rem;
+  font-size: 1rem;
+  border-radius: 0.5rem;
+  border: none;
+  background-color: #ffffc7;
+  color: #191913;
 }
