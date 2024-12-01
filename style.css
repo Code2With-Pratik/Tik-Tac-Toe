@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -15,8 +17,13 @@ body {
   min-height: 100vh;
 }
 
+h1{
+  font-family: "Kaushan Script", cursive;
+  font-size: 55px;
+}
+
 .container {
-  height: 70vh;
+  height: 60vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -120,3 +127,10 @@ a {
   font-weight: bold;
 }
 
+@media screen and (max-width: 820px){
+  h1{
+    font-family: "Kaushan Script", cursive;
+    margin-top: 75px;
+    font-size: 80px;
+  }
+}
