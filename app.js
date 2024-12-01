@@ -3,10 +3,11 @@ let resetBtn = document.querySelector("#reset-btn");
 let newGameBtn = document.querySelector("#new-btn");
 let msgContainer = document.querySelector(".msg-container");
 let msg = document.querySelector("#msg");
+let gameModeSelect = document.querySelector("#game-mode");
 
 let currentPlayer = "O"; // Start with player O
 let count = 0; // Tracks the number of moves
-let isComputerOpponent = false; // Set true for playing with a computer
+let isComputerOpponent = false; // Determines the game mode
 
 const winPatterns = [
   [0, 1, 2],
@@ -19,6 +20,12 @@ const winPatterns = [
   [2, 4, 6],
 ];
 
+// Handle mode selection
+gameModeSelect.addEventListener("change", () => {
+  isComputerOpponent = gameModeSelect.value === "computer";
+  resetGame();
+});
+
 // Reset the game to its initial state
 const resetGame = () => {
   currentPlayer = "O";
@@ -29,13 +36,12 @@ const resetGame = () => {
 
 // Handle box clicks
 const handleBoxClick = (box, index) => {
-  if (box.innerText !== "") return; // Prevent overwriting moves
+  if (box.innerText !== "") return;
 
   box.innerText = currentPlayer;
   box.classList.add(currentPlayer === "O" ? "player-o" : "player-x");
   count++;
 
-  // Check for winner or draw
   if (checkWinner()) {
     showWinner(currentPlayer);
     return;
@@ -46,7 +52,6 @@ const handleBoxClick = (box, index) => {
     return;
   }
 
-  // Switch turn or let the computer play
   if (isComputerOpponent && currentPlayer === "X") {
     computerMove();
   } else {
@@ -61,7 +66,6 @@ const computerMove = () => {
   boxes[bestMove].classList.add("player-x");
   count++;
 
-  // Check for winner or draw
   if (checkWinner()) {
     showWinner("X");
     return;
@@ -82,10 +86,9 @@ const findBestMove = () => {
 
   boxes.forEach((box, index) => {
     if (box.innerText === "") {
-      box.innerText = "X"; // Simulate the computer's move
+      box.innerText = "X"; // Simulate computer's move
       let score = minimax(false); // Evaluate the board
-      box.innerText = ""; // Undo the move
-
+      box.innerText = ""; // Undo move
       if (score > bestScore) {
         bestScore = score;
         move = index;
@@ -104,10 +107,9 @@ const minimax = (isMaximizing) => {
 
   boxes.forEach((box, index) => {
     if (box.innerText === "") {
-      box.innerText = isMaximizing ? "X" : "O"; // Simulate the move
+      box.innerText = isMaximizing ? "X" : "O";
       let score = minimax(!isMaximizing);
-      box.innerText = ""; // Undo the move
-
+      box.innerText = "";
       bestScore = isMaximizing
         ? Math.max(score, bestScore)
         : Math.min(score, bestScore);
@@ -119,7 +121,7 @@ const minimax = (isMaximizing) => {
 
 // Handle game draw
 const gameDraw = () => {
-  msg.innerText = `It's a draw!`;
+  msg.innerText = "It's a draw!";
   msgContainer.classList.remove("hide");
   disableBoxes();
 };
@@ -168,10 +170,7 @@ boxes.forEach((box, index) => {
 
 // Add event listeners to buttons
 newGameBtn.addEventListener("click", resetGame);
-resetBtn.addEventListener("click", () => {
-  isComputerOpponent = confirm("Play against the computer?");
-  resetGame();
-});
+resetBtn.addEventListener("click", resetGame);
 
-// Initialize game
+// Initialize the game
 resetGame();
