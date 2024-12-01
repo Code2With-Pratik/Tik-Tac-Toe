@@ -4,8 +4,10 @@
 }
 
 body {
-  background-color: #548687;
+  background-color: #790303;
+  color: #ffffc7;
   text-align: center;
+  font-size: 30px;
 }
 
 .container {
@@ -33,7 +35,7 @@ body {
   border: none;
   box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
   font-size: 8vmin;
-  color: #b0413e;
+  color: #ff0800;
   background-color: #ffffc7;
 }
 
@@ -57,7 +59,7 @@ body {
 
 #msg {
   color: #ffffc7;
-  font-size: 5vmin;
+  font-size: 40px;
 }
 
 .msg-container {
